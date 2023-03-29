@@ -6,11 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juarezcode.myjobs.databinding.ActivityJobsBinding
-import com.juarezcode.myjobs.ui.home.HomeViewModel
 
 class JobsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobsBinding
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: JobsViewModel by viewModels()
     private val jobsAdapter = JobsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {

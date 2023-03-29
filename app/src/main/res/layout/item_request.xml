@@ -13,23 +13,30 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/txtItemJobNombreVacante"
+            android:id="@+id/itemRequestTxtNombreSolicitante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="nombre de vacante" />
+            tools:text="Solicitante" />
 
         <TextView
-            android:id="@+id/txtItemJobDescripcionVacante"
-            android:layout_width="0dp"
+            android:id="@+id/itemRequestTxtNombreEmpleo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtItemJobNombreVacante"
-            tools:text="descripcion de la vacante" />
+            app:layout_constraintTop_toBottomOf="@+id/itemRequestTxtNombreSolicitante"
+            tools:text="Empleo" />
 
+        <TextView
+            android:id="@+id/itemRequestTxtEstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemRequestTxtNombreEmpleo"
+            tools:text="estatus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

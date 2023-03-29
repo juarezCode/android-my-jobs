@@ -4,21 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.juarezcode.myjobs.data.MainRepository
+import com.juarezcode.myjobs.data.models.AdminSolicitud
 
 class HomeViewModel : ViewModel() {
     private val repository = MainRepository()
 
-    private var _vacantes = MutableLiveData<List<Vacante>>(emptyList())
-    val vacantes: LiveData<List<Vacante>> = _vacantes
+    private var _solicitudes = MutableLiveData<List<AdminSolicitud>>(emptyList())
+    val solicitudes: LiveData<List<AdminSolicitud>> = _solicitudes
 
-    fun obtenerVacantes() {
-        val vacantes = repository.obtenerVacantes()
-        _vacantes.value = vacantes
+    fun obtenerSolicitudes() {
+        val solicitudes = repository.obtenerSolicitudes()
+        _solicitudes.value = solicitudes
     }
 }
-
-data class Vacante(
-    val id: Int,
-    val nombre: String,
-    val descripcion: String
-)

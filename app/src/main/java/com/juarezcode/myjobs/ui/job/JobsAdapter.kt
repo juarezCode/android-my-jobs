@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.juarezcode.myjobs.data.models.Vacante
 import com.juarezcode.myjobs.databinding.ItemJobBinding
-import com.juarezcode.myjobs.ui.home.Vacante
 
 class JobsAdapter : ListAdapter<Vacante, JobsAdapter.JobsViewHolder>(DiffCallback) {
 
