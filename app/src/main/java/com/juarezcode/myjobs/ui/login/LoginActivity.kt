@@ -1,9 +1,11 @@
-package com.juarezcode.myjobs
+package com.juarezcode.myjobs.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.juarezcode.myjobs.databinding.ActivityLoginBinding
+import com.juarezcode.myjobs.ui.createuser.CreateUserActivity
+import com.juarezcode.myjobs.ui.home.HomeAdminActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding

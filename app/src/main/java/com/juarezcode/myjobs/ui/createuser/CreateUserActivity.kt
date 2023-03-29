@@ -1,4 +1,4 @@
-package com.juarezcode.myjobs
+package com.juarezcode.myjobs.ui.createuser
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

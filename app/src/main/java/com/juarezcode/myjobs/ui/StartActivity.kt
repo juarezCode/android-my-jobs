@@ -1,9 +1,10 @@
-package com.juarezcode.myjobs
+package com.juarezcode.myjobs.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.juarezcode.myjobs.databinding.ActivityStartBinding
+import com.juarezcode.myjobs.ui.login.LoginActivity
 
 class StartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStartBinding
