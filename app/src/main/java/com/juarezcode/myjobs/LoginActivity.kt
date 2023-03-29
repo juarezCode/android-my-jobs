@@ -14,12 +14,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.botonAbrirPantallaHome.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, HomeAdminActivity::class.java)
             startActivity(intent)
         }
 
         binding.botonAbrirPantallaCrearCuenta.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, CreateUserActivity::class.java)
             startActivity(intent)
         }
     }

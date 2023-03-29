@@ -2,16 +2,16 @@ package com.juarezcode.myjobs
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.juarezcode.myjobs.databinding.ActivityRegisterBinding
+import com.juarezcode.myjobs.databinding.ActivityCreateUserBinding
 
-class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityRegisterBinding
+class CreateUserActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCreateUserBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivityCreateUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         binding.botonCrearCuentaDeUsuario.setOnClickListener {
             finish()
         }
