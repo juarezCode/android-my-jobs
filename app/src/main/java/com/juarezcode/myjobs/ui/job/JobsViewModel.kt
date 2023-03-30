@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.juarezcode.myjobs.data.MainRepository
 import com.juarezcode.myjobs.data.models.Vacante
+import com.juarezcode.myjobs.data.repositorio.MainRepository
 
 class JobsViewModel(val context: Application) : AndroidViewModel(context) {
 

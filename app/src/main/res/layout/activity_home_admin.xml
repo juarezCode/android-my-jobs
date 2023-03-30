@@ -8,16 +8,18 @@
     tools:context=".ui.home.HomeAdminActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/homeAdmintTxtUsuarioNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/homeAdminBotonCerrarSesion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/homeAdminBotonCerrarSesion" />
 
     <Button
-        android:id="@+id/homeBotonIrAPantallaVacantes"
+        android:id="@+id/homeAdminBotonIrAPantallaVacantes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ver listado de vacantes"
@@ -32,10 +34,10 @@
         android:text="Solicitudes :"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/homeAdmintTxtUsuarioNombre" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/homeAdminBotonCerrarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar sesion"
@@ -47,7 +49,7 @@
         android:id="@+id/homeAdminRecyclerSolicitudes"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/homeBotonIrAPantallaVacantes"
+        app:layout_constraintBottom_toTopOf="@+id/homeAdminBotonIrAPantallaVacantes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"

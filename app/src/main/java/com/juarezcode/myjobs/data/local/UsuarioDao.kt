@@ -16,4 +16,7 @@ interface UsuarioDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertarUsuario(usuario: UsuarioEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertarMuchosUsuarios(usuarios: List<UsuarioEntity>)
 }

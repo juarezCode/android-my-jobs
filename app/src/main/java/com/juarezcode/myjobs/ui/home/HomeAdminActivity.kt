@@ -5,11 +5,13 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.databinding.ActivityHomeAdminBinding
 import com.juarezcode.myjobs.ui.job.JobsActivity
 
 class HomeAdminActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeAdminBinding
+    private val preferenciasLocales = PreferenciasLocales.getInstance(this)
     private val viewModel: HomeViewModel by viewModels()
     private val requestsAdapter = RequestsAdapter()
 
@@ -17,6 +19,7 @@ class HomeAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        obtenerUsuarioActual()
         viewModel.obtenerSolicitudes()
 
         binding.homeAdminRecyclerSolicitudes.apply {
@@ -25,7 +28,7 @@ class HomeAdminActivity : AppCompatActivity() {
             adapter = requestsAdapter
         }
 
-        binding.homeBotonIrAPantallaVacantes.setOnClickListener {
+        binding.homeAdminBotonIrAPantallaVacantes.setOnClickListener {
             val intent = Intent(this, JobsActivity::class.java)
             startActivity(intent)
         }
@@ -33,5 +36,10 @@ class HomeAdminActivity : AppCompatActivity() {
         viewModel.solicitudes.observe(this) {
             requestsAdapter.submitList(it)
         }
+    }
+
+    fun obtenerUsuarioActual() {
+        val usuarioEnSesion = preferenciasLocales.obtenerUsuarioEnSesion()
+        binding.homeAdmintTxtUsuarioNombre.text = usuarioEnSesion.nombreCompleto
     }
 }

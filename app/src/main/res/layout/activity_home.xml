@@ -4,14 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".ui.home.HomeActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/hometTxtUsuarioNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="home"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Nombre"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeBotonCerrarSesion" />
+
+    <Button
+        android:id="@+id/homeBotonCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesion"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.juarezcode.myjobs.data.models.UsuarioSesionActual
 import com.juarezcode.myjobs.databinding.ActivityLoginBinding
 import com.juarezcode.myjobs.ui.createuser.CreateUserActivity
+import com.juarezcode.myjobs.ui.home.HomeActivity
 import com.juarezcode.myjobs.ui.home.HomeAdminActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -31,16 +33,21 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginState.observe(this) { estado ->
             when (estado) {
-                LoginState.ERROR -> mostrarMensajeDeError()
-                LoginState.EXITO -> abrirPantallaHome()
-                LoginState.INICIAL -> Unit
+                LoginState.Error -> mostrarMensajeDeError()
+                is LoginState.Exito -> abrirPantallaHome(estado.usuario)
+                LoginState.Inicial -> Unit
             }
         }
     }
 
-    private fun abrirPantallaHome() {
-        val intent = Intent(this, HomeAdminActivity::class.java)
-        startActivity(intent)
+    private fun abrirPantallaHome(usuario: UsuarioSesionActual) {
+        if (usuario.esAdministrador) {
+            val intent = Intent(this, HomeAdminActivity::class.java)
+            startActivity(intent)
+        } else {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun mostrarMensajeDeError() {

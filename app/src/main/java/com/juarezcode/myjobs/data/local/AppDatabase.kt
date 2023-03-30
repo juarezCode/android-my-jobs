@@ -21,34 +21,44 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room
                     .databaseBuilder(context, AppDatabase::class.java, "app-citas-empleos")
-                    .addCallback(insertarAdminCallback())
+                    .addCallback(insertarUsuariosPorDefaultCallback())
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
 
-        private fun generarUsuarioAdministrador(): UsuarioEntity {
-            return UsuarioEntity(
-                nombreCompleto = "J Roberto Juarez",
-                nombreDeUsuario = "admin",
-                esAdministrador = true,
-                edad = 27,
-                carrera = "Ingenieria de Software",
-                contrasenia = "admin"
-            )
-        }
-
-        private fun insertarAdminCallback() = object : Callback() {
+        private fun insertarUsuariosPorDefaultCallback() = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     CoroutineScope(Dispatchers.IO).launch {
-                        val usuarioAdmin = generarUsuarioAdministrador()
-                        database.usuarioDao().insertarUsuario(usuarioAdmin)
+                        val usuarios = crearUsuariosPorDefault()
+                        database.usuarioDao().insertarMuchosUsuarios(usuarios)
                     }
                 }
             }
+        }
+
+        private fun crearUsuariosPorDefault(): List<UsuarioEntity> {
+            return listOf(
+                UsuarioEntity(
+                    nombreCompleto = "J Roberto Admin",
+                    nombreDeUsuario = "admin",
+                    esAdministrador = true,
+                    edad = 27,
+                    carrera = "Ingenieria de Software",
+                    contrasenia = "admin"
+                ),
+                UsuarioEntity(
+                    nombreCompleto = "J Roberto Normal",
+                    nombreDeUsuario = "normal",
+                    esAdministrador = false,
+                    edad = 27,
+                    carrera = "Ingenieria de Software",
+                    contrasenia = "normal"
+                )
+            )
         }
     }
 }
