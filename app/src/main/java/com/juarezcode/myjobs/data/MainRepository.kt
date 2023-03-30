@@ -1,9 +1,15 @@
 package com.juarezcode.myjobs.data
 
+import android.content.Context
+import com.juarezcode.myjobs.data.local.AppDatabase
+import com.juarezcode.myjobs.data.local.UsuarioEntity
 import com.juarezcode.myjobs.data.models.AdminSolicitud
 import com.juarezcode.myjobs.data.models.Vacante
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class MainRepository {
+class MainRepository(context: Context) {
+    private val usuarioDao = AppDatabase.getInstance(context).usuarioDao()
 
     fun obtenerVacantes(): List<Vacante> {
         return listOf(
@@ -21,5 +27,11 @@ class MainRepository {
             AdminSolicitud(3, "Pedro", "Plomero", "Pendiente"),
             AdminSolicitud(4, "Luis", "Musico de Jazz", "Pendiente"),
         )
+    }
+
+    suspend fun iniciarSesion(nombreDeUsuario: String, contrasenia: String): UsuarioEntity? {
+        return withContext(Dispatchers.IO) {
+            usuarioDao.iniciarSesion(nombreDeUsuario, contrasenia)
+        }
     }
 }
