@@ -18,6 +18,9 @@ interface PostulacionDao {
     @Query("SELECT * FROM tabla_postulaciones WHERE usuario_id LIKE :usuarioId AND vacante_id LIKE :vacanteId")
     suspend fun validarPostulacionPrevia(usuarioId: Int, vacanteId: Int): PostulacionEntity?
 
+    @Query("UPDATE tabla_postulaciones SET fecha_de_cita = :fecha WHERE id LIKE :postulacionId")
+    suspend fun asignarFechaDeCita(postulacionId: Int, fecha: String)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarPostulacion(postulacion: PostulacionEntity)
 }

@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.data.models.Vacante
-import com.juarezcode.myjobs.databinding.ItemJobBinding
+import com.juarezcode.myjobs.databinding.ItemVacanteBinding
 
 class VacantesAdapter(
     private val onClickPostular: (Vacante) -> Unit
 ) : ListAdapter<Vacante, VacantesAdapter.JobsViewHolder>(DiffCallback) {
 
-    class JobsViewHolder(private val binding: ItemJobBinding) :
+    class JobsViewHolder(private val binding: ItemVacanteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val usuarioEnSesion =
             PreferenciasLocales.getInstance(binding.root.context).obtenerUsuarioEnSesion()
@@ -35,7 +35,7 @@ class VacantesAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobsViewHolder {
-        val binding = ItemJobBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemVacanteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return JobsViewHolder(binding)
     }
 

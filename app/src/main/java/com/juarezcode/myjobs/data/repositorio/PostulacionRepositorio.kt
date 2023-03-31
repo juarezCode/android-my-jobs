@@ -33,7 +33,8 @@ class PostulacionRepositorio(context: Context) {
                 nombreVacante = vacanteEntity.nombre,
                 usuarioId = entity.usuarioId,
                 nombreUsuario = usuarioEntity.nombreCompleto,
-                estatus = entity.estatus
+                estatus = entity.estatus,
+                fechaDeCita = entity.fechaDeCita
             )
 
             misPostulaciones.add(myPostulacion)
@@ -59,7 +60,8 @@ class PostulacionRepositorio(context: Context) {
                 nombreVacante = vacanteEntity.nombre,
                 usuarioId = entity.usuarioId,
                 nombreUsuario = usuarioEntity.nombreCompleto,
-                estatus = entity.estatus
+                estatus = entity.estatus,
+                fechaDeCita = entity.fechaDeCita
             )
 
             postulaciones.add(postulacion)
@@ -76,7 +78,8 @@ class PostulacionRepositorio(context: Context) {
             val postulacion = PostulacionEntity(
                 vacanteId = vacante.id,
                 usuarioId = usuarioId,
-                estatus = "Pendiente"
+                estatus = "Pendiente",
+                fechaDeCita = null
             )
             withContext(Dispatchers.IO) { postulacionDao.insertarPostulacion(postulacion) }
             return Estatus.Exito
@@ -89,4 +92,9 @@ class PostulacionRepositorio(context: Context) {
         }
         return existe != null
     }
+
+    suspend fun asignarFechaDeCita(postulacionId: Int, fecha: String) {
+        withContext(Dispatchers.IO) { postulacionDao.asignarFechaDeCita(postulacionId, fecha) }
+    }
+
 }

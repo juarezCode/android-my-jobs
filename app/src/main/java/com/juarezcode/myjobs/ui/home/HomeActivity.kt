@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val preferenciasLocales = PreferenciasLocales.getInstance(this)
     private val viewModel: HomeViewModel by viewModels()
-    private val postulacionesAdapter = PostulacionesAdapter()
+    private val postulacionesAdapter = PostulacionesAdapter {}
     private val usuarioEnSesion by lazy { preferenciasLocales.obtenerUsuarioEnSesion() }
 
     override fun onCreate(savedInstanceState: Bundle?) {

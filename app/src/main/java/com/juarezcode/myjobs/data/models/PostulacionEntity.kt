@@ -10,6 +10,7 @@ data class PostulacionEntity(
     @ColumnInfo(name = "vacante_id") val vacanteId: Int,
     @ColumnInfo(name = "usuario_id") val usuarioId: Int,
     @ColumnInfo(name = "estatus") val estatus: String,
+    @ColumnInfo(name = "fecha_de_cita") val fechaDeCita: String?,
 )
 
 //fun PostulacionEntity.convertirAPostulacion(): Postulacion {

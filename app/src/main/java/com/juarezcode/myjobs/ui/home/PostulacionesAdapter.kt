@@ -10,31 +10,35 @@ import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.data.models.Postulacion
 import com.juarezcode.myjobs.databinding.ItemPostulacionBinding
 
-class PostulacionesAdapter :
-    ListAdapter<Postulacion, PostulacionesAdapter.PostulacionesViewHolder>(DiffCallback) {
+class PostulacionesAdapter(
+    private val onClickVerDetalle: (Postulacion) -> Unit
+) : ListAdapter<Postulacion, PostulacionesAdapter.PostulacionesViewHolder>(DiffCallback) {
 
     class PostulacionesViewHolder(private val binding: ItemPostulacionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val usuarioEnSesion =
             PreferenciasLocales.getInstance(binding.root.context).obtenerUsuarioEnSesion()
 
-        fun bind(postulacion: Postulacion) = with(binding) {
-            if (usuarioEnSesion.esAdministrador) {
-                itemPostulacionTxtAsignarFecha.isVisible = true
-                binding.root.setOnClickListener {
-                    
+        fun bind(postulacion: Postulacion, onClickVerDetalle: (Postulacion) -> Unit) =
+            with(binding) {
+                if (usuarioEnSesion.esAdministrador) {
+                    itemPostulacionTxtAsignarFecha.isVisible = true
+                    binding.root.setOnClickListener {
+                        onClickVerDetalle(postulacion)
+                    }
+                    itemPostulacionTxtNombreSolicitante.isVisible = true
+                    itemPostulacionTxtNombreSolicitante.text =
+                        "Solicitante : ${postulacion.nombreUsuario}"
+                } else {
+                    itemPostulacionTxtAsignarFecha.isVisible = false
+                    itemPostulacionTxtNombreSolicitante.isVisible = false
                 }
-                itemPostulacionTxtNombreSolicitante.isVisible = true
-                itemPostulacionTxtNombreSolicitante.text =
-                    "Solicitante : ${postulacion.nombreUsuario}"
-            } else {
-                itemPostulacionTxtAsignarFecha.isVisible = false
-                itemPostulacionTxtNombreSolicitante.isVisible = false
-            }
 
-            itemPostulacionTxtNombreEmpleo.text = "Vacante : ${postulacion.nombreVacante}"
-            itemPostulacionTxtEstatus.text = "Estatus : ${postulacion.estatus}"
-        }
+                itemPostulacionTxtFechaDeCita.text =
+                    "Fecha de cita : ${postulacion.fechaDeCita.orEmpty()}"
+                itemPostulacionTxtNombreEmpleo.text = "Vacante : ${postulacion.nombreVacante}"
+                itemPostulacionTxtEstatus.text = "Estatus : ${postulacion.estatus}"
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostulacionesViewHolder {
@@ -45,7 +49,7 @@ class PostulacionesAdapter :
 
     override fun onBindViewHolder(holder: PostulacionesViewHolder, position: Int) {
         val postulacion = getItem(position)
-        holder.bind(postulacion)
+        holder.bind(postulacion, onClickVerDetalle)
     }
 
     object DiffCallback : DiffUtil.ItemCallback<Postulacion>() {
