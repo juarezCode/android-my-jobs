@@ -33,4 +33,9 @@ class JobsActivity : AppCompatActivity() {
             jobsAdapter.submitList(it)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.obtenerVacantes()
+    }
 }
