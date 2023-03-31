@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".ui.job.CreateJobActivity">
+    tools:context=".ui.vacante.CrearVacanteActivity">
 
     <TextView
         android:id="@+id/textView6"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/createJobInputNombreVacante"
+            android:id="@+id/crearVacanteInputNombreVacante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layoutNombreVacante">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/createJobInputDescripcionVacante"
+            android:id="@+id/crearVacanteInputDescripcionVacante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapSentences|textMultiLine|textAutoCorrect"
@@ -56,7 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/createJobBotonCrearNuevaVacante"
+        android:id="@+id/crearVacanteBotonCrearNuevaVacante"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Crear"

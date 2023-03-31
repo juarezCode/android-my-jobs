@@ -13,22 +13,32 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/txtItemJobNombreVacante"
+            android:id="@+id/itemJobTxtNombreVacante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemJobBotonPostularme"
             tools:text="nombre de vacante" />
 
         <TextView
-            android:id="@+id/txtItemJobDescripcionVacante"
+            android:id="@+id/itemJobTxtDescripcionVacante"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtItemJobNombreVacante"
+            app:layout_constraintTop_toBottomOf="@+id/itemJobTxtNombreVacante"
             tools:text="descripcion de la vacante" />
+
+        <Button
+            android:id="@+id/itemJobBotonPostularme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Postularme"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

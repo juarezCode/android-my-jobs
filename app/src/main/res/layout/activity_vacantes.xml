@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".ui.job.JobsActivity">
+    tools:context=".ui.vacante.VacantesActivity">
 
     <TextView
         android:id="@+id/textView7"
@@ -18,10 +18,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/jobsRecyclerVacantes"
+        android:id="@+id/vacantesRecyclerVacantes"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/botonJobsIrAPantallaCrearNuevaVacante"
+        app:layout_constraintBottom_toTopOf="@+id/vacantesBotonIrAPantallaCrearNuevaVacante"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
@@ -29,7 +29,7 @@
         tools:listitem="@layout/item_job" />
 
     <Button
-        android:id="@+id/botonJobsIrAPantallaCrearNuevaVacante"
+        android:id="@+id/vacantesBotonIrAPantallaCrearNuevaVacante"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Crear nueva vacante"

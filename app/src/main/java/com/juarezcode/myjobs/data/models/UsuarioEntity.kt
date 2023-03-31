@@ -1,9 +1,8 @@
-package com.juarezcode.myjobs.data.local
+package com.juarezcode.myjobs.data.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.juarezcode.myjobs.data.models.UsuarioSesionActual
 
 @Entity(tableName = "tabla_usuarios")
 data class UsuarioEntity(

@@ -1,11 +1,12 @@
 package com.juarezcode.myjobs.ui.createuser
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.juarezcode.myjobs.data.local.UsuarioEntity
+import com.juarezcode.myjobs.data.models.UsuarioEntity
 import com.juarezcode.myjobs.databinding.ActivityCreateUserBinding
+import com.juarezcode.myjobs.utils.Estatus
+import com.juarezcode.myjobs.utils.mostrarToast
 
 class CreateUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateUserBinding
@@ -18,7 +19,17 @@ class CreateUserActivity : AppCompatActivity() {
 
         binding.botonCrearCuentaDeUsuario.setOnClickListener {
             crearNuevoUsuario()
-            finish()
+        }
+
+        viewModel.crearUsuarioState.observe(this) { estatus ->
+            when (estatus) {
+                Estatus.Exito -> {
+                    mostrarToast("Usuario creado exitosamente")
+                    finish()
+                }
+                Estatus.NombreDeUsuarioNoDisponible -> mostrarToast("El nombre de usuario no esta disponible")
+                else -> Unit
+            }
         }
     }
 
@@ -36,19 +47,17 @@ class CreateUserActivity : AppCompatActivity() {
             carrera.isEmpty() ||
             contrasenia.isEmpty()
         ) {
-            Toast.makeText(this, "Ingresa todos los datos", Toast.LENGTH_SHORT).show()
+            mostrarToast("Ingresa todos los datos")
+        } else {
+            val nuevoUsuario = UsuarioEntity(
+                nombreCompleto = nombreCompleto,
+                nombreDeUsuario = nombreDeUsuario,
+                contrasenia = contrasenia,
+                edad = edad.toInt(),
+                carrera = carrera,
+            )
+
+            viewModel.guardarUsuario(nuevoUsuario)
         }
-
-        val nuevoUsuario = UsuarioEntity(
-            nombreCompleto = nombreCompleto,
-            nombreDeUsuario = nombreDeUsuario,
-            contrasenia = contrasenia,
-            edad = edad.toInt(),
-            carrera = carrera,
-        )
-
-        viewModel.guardarUsuario(nuevoUsuario)
-        Toast.makeText(this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
-
     }
 }

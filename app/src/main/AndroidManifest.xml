@@ -14,10 +14,10 @@
         android:theme="@style/Theme.MyJobs"
         tools:targetApi="31">
         <activity
-            android:name=".ui.job.JobsActivity"
+            android:name=".ui.vacante.VacantesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.job.CreateJobActivity"
+            android:name=".ui.vacante.CrearVacanteActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeAdminActivity"

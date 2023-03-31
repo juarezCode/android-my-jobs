@@ -7,34 +7,34 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.databinding.ActivityHomeAdminBinding
-import com.juarezcode.myjobs.ui.job.JobsActivity
+import com.juarezcode.myjobs.ui.vacante.VacantesActivity
 
 class HomeAdminActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeAdminBinding
     private val preferenciasLocales = PreferenciasLocales.getInstance(this)
     private val viewModel: HomeViewModel by viewModels()
-    private val requestsAdapter = RequestsAdapter()
+    private val postulacionesAdapter = PostulacionesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
         obtenerUsuarioActual()
-        viewModel.obtenerSolicitudes()
+        viewModel.obtenerPostulaciones()
 
-        binding.homeAdminRecyclerSolicitudes.apply {
+        binding.homeAdminRecyclerPostulaciones.apply {
             layoutManager =
                 LinearLayoutManager(this@HomeAdminActivity, LinearLayoutManager.VERTICAL, false)
-            adapter = requestsAdapter
+            adapter = postulacionesAdapter
         }
 
         binding.homeAdminBotonIrAPantallaVacantes.setOnClickListener {
-            val intent = Intent(this, JobsActivity::class.java)
+            val intent = Intent(this, VacantesActivity::class.java)
             startActivity(intent)
         }
 
-        viewModel.solicitudes.observe(this) {
-            requestsAdapter.submitList(it)
+        viewModel.postulaciones.observe(this) { postulaciones ->
+            postulacionesAdapter.submitList(postulaciones)
         }
     }
 
