@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.juarezcode.myjobs.data.models.Postulacion
-import com.juarezcode.myjobs.data.repositorio.MainRepository
+import com.juarezcode.myjobs.data.repositorio.PostulacionRepositorio
 import kotlinx.coroutines.launch
 
 class HomeViewModel(val context: Application) : AndroidViewModel(context) {
-    private val repositorio = MainRepository(context)
+    private val repositorio = PostulacionRepositorio(context)
 
     private var _postulaciones = MutableLiveData<List<Postulacion>>(emptyList())
     val postulaciones: LiveData<List<Postulacion>> = _postulaciones

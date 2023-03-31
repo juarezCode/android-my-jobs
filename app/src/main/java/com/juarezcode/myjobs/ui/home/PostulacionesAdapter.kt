@@ -2,9 +2,11 @@ package com.juarezcode.myjobs.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.data.models.Postulacion
 import com.juarezcode.myjobs.databinding.ItemPostulacionBinding
 
@@ -13,11 +15,25 @@ class PostulacionesAdapter :
 
     class PostulacionesViewHolder(private val binding: ItemPostulacionBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val usuarioEnSesion =
+            PreferenciasLocales.getInstance(binding.root.context).obtenerUsuarioEnSesion()
 
         fun bind(postulacion: Postulacion) = with(binding) {
-            itemRequestTxtNombreSolicitante.text = "Solicitante : ${postulacion.nombreUsuario}"
-            itemRequestTxtNombreEmpleo.text = "Vacante : ${postulacion.nombreVacante}"
-            itemRequestTxtEstatus.text = "Estatus : ${postulacion.estatus}"
+            if (usuarioEnSesion.esAdministrador) {
+                itemPostulacionTxtAsignarFecha.isVisible = true
+                binding.root.setOnClickListener {
+                    
+                }
+                itemPostulacionTxtNombreSolicitante.isVisible = true
+                itemPostulacionTxtNombreSolicitante.text =
+                    "Solicitante : ${postulacion.nombreUsuario}"
+            } else {
+                itemPostulacionTxtAsignarFecha.isVisible = false
+                itemPostulacionTxtNombreSolicitante.isVisible = false
+            }
+
+            itemPostulacionTxtNombreEmpleo.text = "Vacante : ${postulacion.nombreVacante}"
+            itemPostulacionTxtEstatus.text = "Estatus : ${postulacion.estatus}"
         }
     }
 

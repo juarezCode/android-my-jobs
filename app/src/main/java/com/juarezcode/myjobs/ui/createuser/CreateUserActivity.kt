@@ -21,6 +21,10 @@ class CreateUserActivity : AppCompatActivity() {
             crearNuevoUsuario()
         }
 
+        observarCrearUsuarioState()
+    }
+
+    private fun observarCrearUsuarioState() {
         viewModel.crearUsuarioState.observe(this) { estatus ->
             when (estatus) {
                 Estatus.Exito -> {
@@ -40,13 +44,7 @@ class CreateUserActivity : AppCompatActivity() {
         val carrera = binding.inputCarrera.text.toString()
         val contrasenia = binding.inputContrasenia.text.toString()
 
-        if (
-            nombreCompleto.isEmpty() ||
-            nombreDeUsuario.isEmpty() ||
-            edad.isEmpty() ||
-            carrera.isEmpty() ||
-            contrasenia.isEmpty()
-        ) {
+        if (nombreCompleto.isEmpty() || nombreDeUsuario.isEmpty() || edad.isEmpty() || carrera.isEmpty() || contrasenia.isEmpty()) {
             mostrarToast("Ingresa todos los datos")
         } else {
             val nuevoUsuario = UsuarioEntity(

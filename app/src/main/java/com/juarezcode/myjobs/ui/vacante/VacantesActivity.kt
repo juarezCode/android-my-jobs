@@ -56,7 +56,7 @@ class VacantesActivity : AppCompatActivity() {
     }
 
     private fun postular(vacante: Vacante) {
-        viewModel.postular(vacante)
+        viewModel.postular(vacante, usuarioEnSesion.id)
     }
 
     private fun setearDatos() {

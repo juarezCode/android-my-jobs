@@ -5,11 +5,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.juarezcode.myjobs.data.repositorio.MainRepository
+import com.juarezcode.myjobs.data.repositorio.LoginRepository
 import kotlinx.coroutines.launch
 
 class LoginViewModel(val context: Application) : AndroidViewModel(context) {
-    private val repositorio = MainRepository(context)
+    private val repositorio = LoginRepository(context)
 
     private var _loginState = MutableLiveData<LoginState>(LoginState.Inicial)
     val loginState: LiveData<LoginState> = _loginState

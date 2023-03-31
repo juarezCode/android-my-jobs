@@ -7,13 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.juarezcode.myjobs.data.models.Vacante
 import com.juarezcode.myjobs.data.models.VacanteEntity
-import com.juarezcode.myjobs.data.repositorio.MainRepository
+import com.juarezcode.myjobs.data.repositorio.PostulacionRepositorio
+import com.juarezcode.myjobs.data.repositorio.VacanteRepositorio
 import com.juarezcode.myjobs.utils.Estatus
 import kotlinx.coroutines.launch
 
 class VacantesViewModel(val context: Application) : AndroidViewModel(context) {
 
-    private val repositorio = MainRepository(context)
+    private val vacanteRepositorio = VacanteRepositorio(context)
+    private val postulacionRepositorio = PostulacionRepositorio(context)
 
     private var _vacantes = MutableLiveData<List<Vacante>>(emptyList())
     val vacantes: LiveData<List<Vacante>> = _vacantes
@@ -22,16 +24,16 @@ class VacantesViewModel(val context: Application) : AndroidViewModel(context) {
     val postulacionState: LiveData<Estatus> = _postulacionState
 
     fun obtenerVacantes() = viewModelScope.launch {
-        val vacantes = repositorio.obtenerVacantes()
+        val vacantes = vacanteRepositorio.obtenerVacantes()
         _vacantes.value = vacantes
     }
 
     fun guardarVacante(vacante: VacanteEntity) = viewModelScope.launch {
-        repositorio.guardarVacante(vacante)
+        vacanteRepositorio.guardarVacante(vacante)
     }
 
-    fun postular(vacante: Vacante) = viewModelScope.launch {
-        val estatusPostulacion = repositorio.guardarPostulacion(vacante)
+    fun postular(vacante: Vacante, usuarioId: Int) = viewModelScope.launch {
+        val estatusPostulacion = postulacionRepositorio.guardarPostulacion(vacante, usuarioId)
         _postulacionState.value = estatusPostulacion
     }
 }
