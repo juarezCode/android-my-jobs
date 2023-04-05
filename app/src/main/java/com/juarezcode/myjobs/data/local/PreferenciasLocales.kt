@@ -59,4 +59,22 @@ class PreferenciasLocales(context: Context) {
         put(Constantes.PREF_KEY_USUARIO_EN_SESION, usuarioString)
     }
 
+    fun guardarSesionActiva(esAdmin: Boolean) {
+        put(Constantes.PREF_KEY_SESION_ACTIVA, true)
+        put(Constantes.PREF_KEY_SESION_ES_ADMIN, esAdmin)
+    }
+
+    fun eliminarSesionActiva() {
+        put(Constantes.PREF_KEY_SESION_ACTIVA, false)
+        put(Constantes.PREF_KEY_SESION_ES_ADMIN, false)
+    }
+
+    fun existeUnaSesionActiva(): Boolean {
+        return getBoolean(Constantes.PREF_KEY_SESION_ACTIVA)
+    }
+
+    fun elUsuarioEnSesionEsAdmin(): Boolean {
+        return getBoolean(Constantes.PREF_KEY_SESION_ES_ADMIN)
+    }
+
 }

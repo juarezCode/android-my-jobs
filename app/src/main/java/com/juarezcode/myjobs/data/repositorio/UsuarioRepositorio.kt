@@ -19,7 +19,7 @@ class UsuarioRepositorio(context: Context) {
         }
     }
 
-    suspend fun nombreDeUsuarioNoDisponible(nombreDeUsuario: String): Boolean {
+    private suspend fun nombreDeUsuarioNoDisponible(nombreDeUsuario: String): Boolean {
         val existe = withContext(Dispatchers.IO) {
             usuarioDao.validarNombreDeUsuarioUnico(nombreDeUsuario)
         }

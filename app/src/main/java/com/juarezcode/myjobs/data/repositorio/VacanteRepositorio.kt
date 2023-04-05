@@ -8,7 +8,7 @@ import com.juarezcode.myjobs.data.models.convertirAVacantes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class VacanteRepositorio(private val context: Context) {
+class VacanteRepositorio(context: Context) {
     private val vacanteDao = AppDatabase.getInstance(context).vacanteDao()
 
     suspend fun obtenerVacantes(): List<Vacante> {

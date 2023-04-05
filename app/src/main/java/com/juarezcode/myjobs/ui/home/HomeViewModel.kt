@@ -28,7 +28,7 @@ class HomeViewModel(val context: Application) : AndroidViewModel(context) {
         _postulaciones.value = postulaciones
     }
 
-    fun asignarFechaDeCita(postulacionInt: Int, fecha: String) = viewModelScope.launch {
-        repositorio.asignarFechaDeCita(postulacionInt, fecha)
+    fun asignarFechaDeCita(postulacionId: Int, fecha: String) = viewModelScope.launch {
+        repositorio.asignarFechaDeCita(postulacionId, fecha)
     }
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.data.models.Postulacion
 import com.juarezcode.myjobs.databinding.ActivityHomeAdminBinding
+import com.juarezcode.myjobs.ui.login.LoginActivity
 import com.juarezcode.myjobs.ui.vacante.VacantesActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,7 +21,7 @@ class HomeAdminActivity : AppCompatActivity() {
     private val usuarioEnSesion by lazy { preferenciasLocales.obtenerUsuarioEnSesion() }
     private val viewModel: HomeViewModel by viewModels()
     private val postulacionesAdapter = PostulacionesAdapter(::asignarFecha)
-    var calendar = Calendar.getInstance()
+    private var calendar: Calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,17 @@ class HomeAdminActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.homeAdminBotonCerrarSesion.setOnClickListener {
+            preferenciasLocales.eliminarSesionActiva()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        observarTodasLasPostulaciones()
+    }
+
+    private fun observarTodasLasPostulaciones() {
         viewModel.postulaciones.observe(this) { postulaciones ->
             postulacionesAdapter.submitList(postulaciones)
         }

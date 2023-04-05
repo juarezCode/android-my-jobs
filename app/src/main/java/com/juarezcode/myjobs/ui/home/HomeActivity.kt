@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.databinding.ActivityHomeBinding
+import com.juarezcode.myjobs.ui.login.LoginActivity
 import com.juarezcode.myjobs.ui.vacante.VacantesActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -33,6 +34,17 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.homeBotonCerrarSesion.setOnClickListener {
+            preferenciasLocales.eliminarSesionActiva()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        observarMisPostulaciones()
+    }
+
+    private fun observarMisPostulaciones() {
         viewModel.misPostulaciones.observe(this) { postulaciones ->
             postulacionesAdapter.submitList(postulaciones)
         }
