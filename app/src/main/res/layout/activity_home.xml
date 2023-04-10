@@ -28,6 +28,7 @@
 
     <Button
         android:id="@+id/homeBotonCerrarSesion"
+        style="@style/MyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar sesion"
@@ -37,8 +38,10 @@
 
     <Button
         android:id="@+id/homeBotonIrAPantallaVacantes"
-        android:layout_width="0dp"
+        style="@style/MyButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:text="Ver listado de vacantes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:itemCount="4"
+        tools:itemCount="3"
         tools:listitem="@layout/item_postulacion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

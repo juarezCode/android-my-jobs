@@ -16,7 +16,7 @@ interface UsuarioDao {
     fun obtenerTodosLosUsuarios(): List<UsuarioEntity>
 
     @Query("SELECT * FROM tabla_usuarios WHERE id LIKE :usuarioId LIMIT 1")
-    suspend fun obtenerUnUsuarioPorId(usuarioId: Int): UsuarioEntity
+    suspend fun obtenerUnUsuarioPorId(usuarioId: Int): UsuarioEntity?
 
     @Query("SELECT * FROM tabla_usuarios WHERE nombre_de_usuario LIKE :nombreDeUsuario LIMIT 1")
     suspend fun validarNombreDeUsuarioUnico(nombreDeUsuario: String): UsuarioEntity?

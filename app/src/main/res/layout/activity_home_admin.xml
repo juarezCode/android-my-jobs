@@ -20,8 +20,10 @@
 
     <Button
         android:id="@+id/homeAdminBotonIrAPantallaVacantes"
-        android:layout_width="0dp"
+        style="@style/MyButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:text="Ver listado de vacantes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +40,7 @@
 
     <Button
         android:id="@+id/homeAdminBotonCerrarSesion"
+        style="@style/MyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar sesion"
@@ -49,7 +52,7 @@
         android:id="@+id/homeAdminRecyclerPostulaciones"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:itemCount="4"
+        tools:itemCount="3"
         tools:listitem="@layout/item_postulacion"
         app:layout_constraintBottom_toTopOf="@+id/homeAdminBotonIrAPantallaVacantes"
         app:layout_constraintEnd_toEndOf="parent"

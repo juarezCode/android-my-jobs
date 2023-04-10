@@ -22,15 +22,15 @@ class PostulacionesAdapter(
         fun bind(postulacion: Postulacion, onClickVerDetalle: (Postulacion) -> Unit) =
             with(binding) {
                 if (usuarioEnSesion.esAdministrador) {
-                    itemPostulacionTxtAsignarFecha.isVisible = true
-                    binding.root.setOnClickListener {
+                    itemPostulacionBtnVerDetalle.isVisible = true
+                    itemPostulacionBtnVerDetalle.setOnClickListener {
                         onClickVerDetalle(postulacion)
                     }
                     itemPostulacionTxtNombreSolicitante.isVisible = true
                     itemPostulacionTxtNombreSolicitante.text =
                         "Solicitante : ${postulacion.nombreUsuario}"
                 } else {
-                    itemPostulacionTxtAsignarFecha.isVisible = false
+                    itemPostulacionBtnVerDetalle.isVisible = false
                     itemPostulacionTxtNombreSolicitante.isVisible = false
                 }
 

@@ -32,7 +32,7 @@ class PostulacionRepositorio(context: Context) {
                 vacanteId = entity.vacanteId,
                 nombreVacante = vacanteEntity.nombre,
                 usuarioId = entity.usuarioId,
-                nombreUsuario = usuarioEntity.nombreCompleto,
+                nombreUsuario = usuarioEntity?.nombreCompleto.orEmpty(),
                 estatus = entity.estatus,
                 fechaDeCita = entity.fechaDeCita
             )
@@ -43,7 +43,7 @@ class PostulacionRepositorio(context: Context) {
         return misPostulaciones
     }
 
-    suspend fun obtenerPostulaciones(): List<Postulacion> {
+    suspend fun obtenerTodasLasPostulaciones(): List<Postulacion> {
         val postulacionesGuardadas =
             withContext(Dispatchers.IO) { postulacionDao.obtenerTodasLasPostulaciones() }
         val postulaciones = mutableListOf<Postulacion>()
@@ -59,7 +59,7 @@ class PostulacionRepositorio(context: Context) {
                 vacanteId = entity.vacanteId,
                 nombreVacante = vacanteEntity.nombre,
                 usuarioId = entity.usuarioId,
-                nombreUsuario = usuarioEntity.nombreCompleto,
+                nombreUsuario = usuarioEntity?.nombreCompleto.orEmpty(),
                 estatus = entity.estatus,
                 fechaDeCita = entity.fechaDeCita
             )
@@ -93,7 +93,7 @@ class PostulacionRepositorio(context: Context) {
         return existe != null
     }
 
-    suspend fun asignarFechaDeCita(postulacionId: Int, fecha: String) {
+    suspend fun guardarFechaDeCita(postulacionId: Int, fecha: String) {
         withContext(Dispatchers.IO) { postulacionDao.asignarFechaDeCita(postulacionId, fecha) }
     }
 

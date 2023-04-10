@@ -24,11 +24,12 @@ class HomeViewModel(val context: Application) : AndroidViewModel(context) {
     }
 
     fun obtenerPostulaciones() = viewModelScope.launch {
-        val postulaciones = repositorio.obtenerPostulaciones()
+        val postulaciones = repositorio.obtenerTodasLasPostulaciones()
         _postulaciones.value = postulaciones
     }
 
-    fun asignarFechaDeCita(postulacionId: Int, fecha: String) = viewModelScope.launch {
-        repositorio.asignarFechaDeCita(postulacionId, fecha)
+    fun guardarFechaDeCita(postulacionId: Int, fecha: String) = viewModelScope.launch {
+        repositorio.guardarFechaDeCita(postulacionId, fecha)
+        obtenerPostulaciones()
     }
 }

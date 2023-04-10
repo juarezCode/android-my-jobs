@@ -24,3 +24,14 @@ fun UsuarioEntity.convertirAUsuarioSesionActual(): UsuarioSesionActual {
         contrasenia = this.contrasenia
     )
 }
+
+fun UsuarioEntity.convertirAUsuario(): Usuario {
+    return Usuario(
+        id = this.id,
+        nombreCompleto = this.nombreCompleto,
+        nombreDeUsuario = this.nombreDeUsuario,
+        esAdministrador = this.esAdministrador,
+        edad = this.edad,
+        carrera = this.carrera
+    )
+}

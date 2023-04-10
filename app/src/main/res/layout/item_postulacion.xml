@@ -36,24 +36,28 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="estatus" />
-
-        <TextView
-            android:id="@+id/itemPostulacionTxtAsignarFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ver detalle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:text="Estatus" />
 
         <TextView
             android:id="@+id/itemPostulacionTxtFechaDeCita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
             android:text="Fecha de cita"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemPostulacionTxtNombreEmpleo" />
+            app:layout_constraintStart_toEndOf="@+id/itemPostulacionTxtEstatus"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/itemPostulacionBtnVerDetalle"
+            style="@style/MyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver detalle"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemPostulacionTxtNombreEmpleo"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

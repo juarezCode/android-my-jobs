@@ -12,6 +12,7 @@ import com.juarezcode.myjobs.data.models.Postulacion
 import com.juarezcode.myjobs.databinding.ActivityHomeAdminBinding
 import com.juarezcode.myjobs.ui.login.LoginActivity
 import com.juarezcode.myjobs.ui.vacante.VacantesActivity
+import com.juarezcode.myjobs.utils.mostrarToast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,7 +21,7 @@ class HomeAdminActivity : AppCompatActivity() {
     private val preferenciasLocales = PreferenciasLocales.getInstance(this)
     private val usuarioEnSesion by lazy { preferenciasLocales.obtenerUsuarioEnSesion() }
     private val viewModel: HomeViewModel by viewModels()
-    private val postulacionesAdapter = PostulacionesAdapter(::asignarFecha)
+    private val postulacionesAdapter = PostulacionesAdapter(::verDetallePostulacion)
     private var calendar: Calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,17 @@ class HomeAdminActivity : AppCompatActivity() {
         }
     }
 
-    private fun asignarFecha(postulacion: Postulacion) {
+    private fun verDetallePostulacion(postulacion: Postulacion) {
+        AlertaDetallePostulacion.newInstance(postulacion.nombreVacante, postulacion.usuarioId)
+            .apply {
+                setClickAsignarFecha { mostrarCalendario(postulacion.id) }
+                setClickRechazar {
+                    mostrarToast("rechazar")
+                }
+            }.show(supportFragmentManager, AlertaDetallePostulacion.TAG)
+    }
+
+    private fun mostrarCalendario(postulacionId: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             DatePickerDialog(
                 this,
@@ -67,7 +78,7 @@ class HomeAdminActivity : AppCompatActivity() {
 
                     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     val fecha = sdf.format(calendar.time)
-                    asignarFechaDeCita(postulacion.id, fecha)
+                    guardarFechaDeCita(postulacionId, fecha)
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -76,8 +87,8 @@ class HomeAdminActivity : AppCompatActivity() {
         }
     }
 
-    private fun asignarFechaDeCita(postulacionId: Int, fecha: String) {
-        viewModel.asignarFechaDeCita(postulacionId, fecha)
+    private fun guardarFechaDeCita(postulacionId: Int, fecha: String) {
+        viewModel.guardarFechaDeCita(postulacionId, fecha)
     }
 
     private fun setearDatos() {

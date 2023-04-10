@@ -57,6 +57,7 @@
 
     <Button
         android:id="@+id/crearVacanteBotonCrearNuevaVacante"
+        style="@style/MyButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Crear"
