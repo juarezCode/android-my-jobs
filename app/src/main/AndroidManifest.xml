@@ -23,7 +23,8 @@
             android:name=".ui.home.HomeAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.createuser.CreateUserActivity"
+            android:name=".ui.createuser.CrearUsuarioActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"

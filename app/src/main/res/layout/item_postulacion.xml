@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Fecha de cita"
+            tools:text="Fecha de cita"
             app:layout_constraintStart_toEndOf="@+id/itemPostulacionTxtEstatus"
             app:layout_constraintTop_toTopOf="parent" />
 

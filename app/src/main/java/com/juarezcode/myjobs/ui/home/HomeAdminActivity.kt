@@ -12,7 +12,6 @@ import com.juarezcode.myjobs.data.models.Postulacion
 import com.juarezcode.myjobs.databinding.ActivityHomeAdminBinding
 import com.juarezcode.myjobs.ui.login.LoginActivity
 import com.juarezcode.myjobs.ui.vacante.VacantesActivity
-import com.juarezcode.myjobs.utils.mostrarToast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -62,7 +61,7 @@ class HomeAdminActivity : AppCompatActivity() {
             .apply {
                 setClickAsignarFecha { mostrarCalendario(postulacion.id) }
                 setClickRechazar {
-                    mostrarToast("rechazar")
+                    viewModel.rechazarPostulacion(postulacion.id)
                 }
             }.show(supportFragmentManager, AlertaDetallePostulacion.TAG)
     }
@@ -71,7 +70,7 @@ class HomeAdminActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             DatePickerDialog(
                 this,
-                { view, year, month, dayOfMonth ->
+                { _, year, month, dayOfMonth ->
                     calendar.set(Calendar.YEAR, year)
                     calendar.set(Calendar.MONTH, month)
                     calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -92,7 +91,7 @@ class HomeAdminActivity : AppCompatActivity() {
     }
 
     private fun setearDatos() {
-        binding.homeAdmintTxtUsuarioNombre.text = usuarioEnSesion.nombreCompleto
+        binding.homeAdmintTxtUsuarioNombre.text = usuarioEnSesion.nombre
     }
 
     override fun onResume() {

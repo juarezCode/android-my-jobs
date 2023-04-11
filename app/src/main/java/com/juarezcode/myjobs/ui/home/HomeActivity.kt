@@ -51,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setearDatos() {
-        binding.hometTxtUsuarioNombre.text = usuarioEnSesion.nombreCompleto
+        binding.hometTxtUsuarioNombre.text = usuarioEnSesion.nombre
     }
 
     override fun onResume() {

@@ -28,14 +28,15 @@ class PostulacionesAdapter(
                     }
                     itemPostulacionTxtNombreSolicitante.isVisible = true
                     itemPostulacionTxtNombreSolicitante.text =
-                        "Solicitante : ${postulacion.nombreUsuario}"
+                        "Solicitante : ${postulacion.nombreUsuario} ${postulacion.apellidoUsuario}"
                 } else {
                     itemPostulacionBtnVerDetalle.isVisible = false
                     itemPostulacionTxtNombreSolicitante.isVisible = false
                 }
-
-                itemPostulacionTxtFechaDeCita.text =
-                    "Fecha de cita : ${postulacion.fechaDeCita.orEmpty()}"
+                postulacion.fechaDeCita?.let {
+                    itemPostulacionTxtFechaDeCita.text =
+                        "Fecha de cita : ${postulacion.fechaDeCita}"
+                }
                 itemPostulacionTxtNombreEmpleo.text = "Vacante : ${postulacion.nombreVacante}"
                 itemPostulacionTxtEstatus.text = "Estatus : ${postulacion.estatus}"
             }

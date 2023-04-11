@@ -21,6 +21,9 @@ interface PostulacionDao {
     @Query("UPDATE tabla_postulaciones SET estatus = 'Citado', fecha_de_cita = :fecha WHERE id LIKE :postulacionId")
     suspend fun asignarFechaDeCita(postulacionId: Int, fecha: String)
 
+    @Query("UPDATE tabla_postulaciones SET estatus = 'Rechazado', fecha_de_cita = null WHERE id LIKE :postulacionId")
+    suspend fun cancelarPostulacion(postulacionId: Int)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarPostulacion(postulacion: PostulacionEntity)
 }

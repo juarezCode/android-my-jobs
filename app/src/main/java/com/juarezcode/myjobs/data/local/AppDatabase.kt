@@ -43,55 +43,15 @@ abstract class AppDatabase : RoomDatabase() {
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     CoroutineScope(Dispatchers.IO).launch {
-                        val usuarios = crearUsuariosPorDefault()
+                        val usuarios = ProveedorDeDatos.crearUsuariosPorDefault()
                         database.usuarioDao().insertarMuchosUsuarios(usuarios)
-                        val vacantes = crearVacantesPorDefault()
+                        val vacantes = ProveedorDeDatos.crearVacantesPorDefault()
                         database.vacanteDao().insertarMuchasVacantes(vacantes)
                     }
                 }
             }
         }
 
-        private fun crearUsuariosPorDefault(): List<UsuarioEntity> {
-            return listOf(
-                UsuarioEntity(
-                    nombreCompleto = "J Roberto Admin",
-                    nombreDeUsuario = "admin",
-                    esAdministrador = true,
-                    edad = 27,
-                    carrera = "Ingenieria de Software",
-                    contrasenia = "admin"
-                ),
-                UsuarioEntity(
-                    nombreCompleto = "J Roberto Normal",
-                    nombreDeUsuario = "normal",
-                    esAdministrador = false,
-                    edad = 27,
-                    carrera = "Ingenieria de Software",
-                    contrasenia = "normal"
-                ),
-                UsuarioEntity(
-                    nombreCompleto = "J Roberto Normal",
-                    nombreDeUsuario = "normal2",
-                    esAdministrador = false,
-                    edad = 27,
-                    carrera = "Ingenieria de Software",
-                    contrasenia = "normal2"
-                )
-            )
-        }
 
-        private fun crearVacantesPorDefault(): List<VacanteEntity> {
-            return listOf(
-                VacanteEntity(
-                    nombre = "maestro de ingles",
-                    descripcion = "maestro de ingles experto"
-                ),
-                VacanteEntity(
-                    nombre = "maestro de matematicas",
-                    descripcion = "maestro de matematicas experto"
-                )
-            )
-        }
     }
 }

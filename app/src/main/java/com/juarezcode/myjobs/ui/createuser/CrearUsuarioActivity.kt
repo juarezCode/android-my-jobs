@@ -4,17 +4,17 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.juarezcode.myjobs.data.models.UsuarioEntity
-import com.juarezcode.myjobs.databinding.ActivityCreateUserBinding
+import com.juarezcode.myjobs.databinding.ActivityCrearUsuarioBinding
 import com.juarezcode.myjobs.utils.Estatus
 import com.juarezcode.myjobs.utils.mostrarToast
 
-class CreateUserActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCreateUserBinding
+class CrearUsuarioActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCrearUsuarioBinding
     private val viewModel: UsuarioViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCreateUserBinding.inflate(layoutInflater)
+        binding = ActivityCrearUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.botonCrearCuentaDeUsuario.setOnClickListener {
@@ -38,21 +38,25 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     private fun crearNuevoUsuario() {
-        val nombreCompleto = binding.inputNombreCompleto.text.toString()
+        val nombre = binding.inputNombre.text.toString()
+        val apellido = binding.inputApellido.text.toString()
         val nombreDeUsuario = binding.inputNombreDeUsuario.text.toString()
         val edad = binding.inputEdad.text.toString()
         val carrera = binding.inputCarrera.text.toString()
+        val experiencia = binding.inputExperiencia.text.toString()
         val contrasenia = binding.inputContrasenia.text.toString()
 
-        if (nombreCompleto.isEmpty() || nombreDeUsuario.isEmpty() || edad.isEmpty() || carrera.isEmpty() || contrasenia.isEmpty()) {
+        if (nombre.isEmpty() || apellido.isEmpty() || nombreDeUsuario.isEmpty() || edad.isEmpty() || carrera.isEmpty() || experiencia.isEmpty() || contrasenia.isEmpty()) {
             mostrarToast("Ingresa todos los datos")
         } else {
             val nuevoUsuario = UsuarioEntity(
-                nombreCompleto = nombreCompleto,
+                nombre = nombre,
+                apellido = apellido,
                 nombreDeUsuario = nombreDeUsuario,
                 contrasenia = contrasenia,
                 edad = edad.toInt(),
                 carrera = carrera,
+                experienciaLaboral = experiencia
             )
 
             viewModel.guardarUsuario(nuevoUsuario)

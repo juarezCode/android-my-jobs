@@ -14,8 +14,9 @@
         android:text="Nombre"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/homeBotonCerrarSesion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeBotonCerrarSesion" />
+        app:layout_constraintTop_toTopOf="@+id/homeBotonCerrarSesion" />
 
     <TextView
         android:id="@+id/textView4"
@@ -24,7 +25,7 @@
         android:text="Mis postulaciones:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hometTxtUsuarioNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/homeBotonCerrarSesion" />
 
     <Button
         android:id="@+id/homeBotonCerrarSesion"

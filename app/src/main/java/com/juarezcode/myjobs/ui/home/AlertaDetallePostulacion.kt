@@ -47,7 +47,7 @@ class AlertaDetallePostulacion : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = AlertaDetallePostulacionBinding.inflate(inflater, container, false)
-        isCancelable = true
+        isCancelable = false
         return binding.root
     }
 
@@ -73,16 +73,20 @@ class AlertaDetallePostulacion : DialogFragment() {
             dismiss()
             this.clickRechazar()
         }
+        binding.detallePostulacionBtnCerrarAlerta.setOnClickListener {
+            dismiss()
+        }
     }
 
     private fun observarUsuario() {
         viewModel.usuario.observe(this) {
             it?.let { usuario ->
                 binding.detallePostulacionTxtDetallePostulante.text =
-                    "Datos del postulante:\n" +
-                            "nombre: ${usuario.nombreCompleto}\n" +
-                            "edad: ${usuario.edad}\n" +
-                            "carrera: ${usuario.carrera}"
+                    "Datos del postulante:\n\n" +
+                            "nombre: ${usuario.nombre} ${usuario.apellido}\n\n" +
+                            "edad: ${usuario.edad}\n\n" +
+                            "carrera: ${usuario.carrera}\n\n" +
+                            "experiencia laboral: ${usuario.experienciaLaboral}"
             }
         }
     }

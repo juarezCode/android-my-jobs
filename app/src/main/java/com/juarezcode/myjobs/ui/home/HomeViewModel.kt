@@ -32,4 +32,9 @@ class HomeViewModel(val context: Application) : AndroidViewModel(context) {
         repositorio.guardarFechaDeCita(postulacionId, fecha)
         obtenerPostulaciones()
     }
+
+    fun rechazarPostulacion(postulacionId: Int) = viewModelScope.launch {
+        repositorio.rechazarPostulacion(postulacionId)
+        obtenerPostulaciones()
+    }
 }

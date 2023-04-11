@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.juarezcode.myjobs.data.local.PreferenciasLocales
 import com.juarezcode.myjobs.data.models.UsuarioSesionActual
 import com.juarezcode.myjobs.databinding.ActivityLoginBinding
-import com.juarezcode.myjobs.ui.createuser.CreateUserActivity
+import com.juarezcode.myjobs.ui.createuser.CrearUsuarioActivity
 import com.juarezcode.myjobs.ui.home.HomeActivity
 import com.juarezcode.myjobs.ui.home.HomeAdminActivity
 
@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.botonAbrirPantallaCrearCuenta.setOnClickListener {
-            val intent = Intent(this, CreateUserActivity::class.java)
+            val intent = Intent(this, CrearUsuarioActivity::class.java)
             startActivity(intent)
         }
 

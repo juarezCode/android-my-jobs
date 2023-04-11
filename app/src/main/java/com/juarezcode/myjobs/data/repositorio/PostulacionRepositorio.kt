@@ -32,7 +32,8 @@ class PostulacionRepositorio(context: Context) {
                 vacanteId = entity.vacanteId,
                 nombreVacante = vacanteEntity.nombre,
                 usuarioId = entity.usuarioId,
-                nombreUsuario = usuarioEntity?.nombreCompleto.orEmpty(),
+                nombreUsuario = usuarioEntity?.nombre.orEmpty(),
+                apellidoUsuario = usuarioEntity?.apellido.orEmpty(),
                 estatus = entity.estatus,
                 fechaDeCita = entity.fechaDeCita
             )
@@ -59,7 +60,8 @@ class PostulacionRepositorio(context: Context) {
                 vacanteId = entity.vacanteId,
                 nombreVacante = vacanteEntity.nombre,
                 usuarioId = entity.usuarioId,
-                nombreUsuario = usuarioEntity?.nombreCompleto.orEmpty(),
+                nombreUsuario = usuarioEntity?.nombre.orEmpty(),
+                apellidoUsuario = usuarioEntity?.apellido.orEmpty(),
                 estatus = entity.estatus,
                 fechaDeCita = entity.fechaDeCita
             )
@@ -95,6 +97,10 @@ class PostulacionRepositorio(context: Context) {
 
     suspend fun guardarFechaDeCita(postulacionId: Int, fecha: String) {
         withContext(Dispatchers.IO) { postulacionDao.asignarFechaDeCita(postulacionId, fecha) }
+    }
+
+    suspend fun rechazarPostulacion(postulacionId: Int) {
+        withContext(Dispatchers.IO) { postulacionDao.cancelarPostulacion(postulacionId) }
     }
 
 }
